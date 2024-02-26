@@ -16,8 +16,11 @@
     // console.log(Moment)
 
     "allowSyntheticDefaultImports": true,
-
-    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "esModuleInterop": true
     // если какая либо библиотека не имеет default import
     // лоадеры вроде ts-loader или babel-loader автоматически создаёт их
     // вместо такого импорта

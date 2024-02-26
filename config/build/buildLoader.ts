@@ -40,9 +40,47 @@ export function buildLoader(options: BuildOptions): ModuleOptions['rules'] {
         exclude: /node_modules/,
     }
 
+    const assetLoader =  {
+            test: /\.(png|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+        }
+
+    const svgLoader = {
+            test: /\.svg$/i,
+            issuer: /\.[jt]sx?$/,
+            resourceQuery: { not: [/url/] }, // тут исключаем гет запросы
+            use: [
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            icon: true, /* позволяет svg добавлять инлайн размеры*/
+                            svgoConfig: { // эта настройка позволяет использовать цвет шрифта для цвета иконки
+                                plugins: [
+                                    {
+                                        name: 'convertColors',
+                                        params: {
+                                            currentColor: true
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                 ],
+        }
+
+    const svgUrlLoader = {
+            test: /\.svg$/i,
+            type: 'asset',
+            resourceQuery: /url/, // *.svg?url позволяет использовать svg в качестве картинки в img c get параметром url
+        }
+
     return [
         scssLoader,
         tsLoader,
+        assetLoader,
+        svgUrlLoader,
+        svgLoader
 
     ]
 }
