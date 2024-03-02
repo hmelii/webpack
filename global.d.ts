@@ -22,3 +22,5 @@ declare module "*.svg" {
 }
 
 declare module '*.svg?url';
+
+declare const __PLATFORM__: 'mobile' | 'desktop';

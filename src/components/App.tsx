@@ -13,8 +13,18 @@ const App = () => {
     const increment = () => {
         setCount(prev => prev + 1)
     }
+
+   /* if (__PLATFORM__=== 'desktop') {
+        return <div>IS desktop</div>
+    }
+
+    if (__PLATFORM__=== 'mobile') {
+        return <div>IS mobile</div>
+    }*/
+
     return (
         <>
+            <h1>PLATFORM= {__PLATFORM__}</h1>
             <Link to={'/'}>Back</Link><br /><br />
             <Link to={'/about'}>About</Link><br /><br />
             <Link to={'/shop'}>Shop</Link><br /><br />

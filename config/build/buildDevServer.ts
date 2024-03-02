@@ -6,6 +6,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     return {
         port: options.port ?? 3000,
         open: true,
-        historyApiFallback: true // разрешить SPA
+        historyApiFallback: true, // разрешить SPA,
+        hot: true // позволяет вносить изменения при помощи HMR (hot module replacement) не перезагружая страницу // для фреймворков необходимо доустановить react-refresh-webpack-plugin
     }
 }
